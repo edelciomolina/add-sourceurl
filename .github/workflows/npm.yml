@@ -8,16 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
-      # Setup Node.js environment and npm authentication
       - uses: actions/setup-node@v4
         with:
-          node-version: '18.x'
-          registry-url: 'https://registry.npmjs.org'
-          auth-token: ${{ secrets.NPM_MOLINA }} # Usa o token armazenado nos segredos do repositório
-      
-      # Install dependencies using npm ci
-      - run: npm ci
-      
-      # Publish the package to npm
-      - run: npm publish --access public
+          node-version: "20"
+      - run: npm ci 
+      - uses: JS-DevTools/npm-publish@v3
+        with:
+          token: ${{ secrets.NPM_MOLINA }}
+           
