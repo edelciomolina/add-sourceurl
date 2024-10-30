@@ -7,6 +7,8 @@
 
 This project simplifies the process of adding `sourceURL` comments to files, supporting developers working with dynamically loaded content and giving better insight into their code execution.
 
+![Screen capture](screen-capture.png)
+
 ## How It Works
 
 The project recursively scans the specified root directory for files of the selected types (JavaScript, CSS, HTML), excluding any files in the specified directories. It automatically adds a `//# sourceURL=path` comment to the top of the file if the comment is not already present. This comment contains the relative path to the file, helping Chrome Dev Tools identify and display it properly in the **Sources / Page** tab.
