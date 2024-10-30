@@ -7,7 +7,7 @@
 
 This project simplifies the process of adding `sourceURL` comments to files, supporting developers working with dynamically loaded content and giving better insight into their code execution.
 
-![Screen capture](screen-capture.png)
+![Screen capture](https://raw.githubusercontent.com/edelciomolina/add-sourceurl/refs/heads/main/screen-capture.png)
 
 ## How It Works
 
