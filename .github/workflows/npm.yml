@@ -2,19 +2,23 @@ name: Publish Package to npmjs
 on:
   release:
     types: [published]
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      # Setup .npmrc file to publish to npm 
+      
+      # Setup Node.js environment and npm authentication
       - uses: actions/setup-node@v4
         with:
           node-version: '18.x'
           registry-url: 'https://registry.npmjs.org'
+          # Pass NPM token from GitHub secrets
+          auth-token: ${{ secrets.NPM_MOLINA }}
+      
+      # Install dependencies using npm ci
       - run: npm ci
-      - run: npm whoami
-      - run: echo ${{ secrets.NPM_MOLINA }}
+      
+      # Publish the package to npm
       - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_MOLINA }}
