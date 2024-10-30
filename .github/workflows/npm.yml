@@ -14,11 +14,10 @@ jobs:
         with:
           node-version: '18.x'
           registry-url: 'https://registry.npmjs.org'
-          # Pass NPM token from GitHub secrets
-          auth-token: ${{ secrets.NPM_MOLINA }}
+          auth-token: ${{ secrets.NPM_MOLINA }} # Usa o token armazenado nos segredos do repositório
       
       # Install dependencies using npm ci
       - run: npm ci
       
       # Publish the package to npm
-      - run: npm publish
+      - run: npm publish --access public

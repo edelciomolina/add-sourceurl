@@ -1,6 +1,6 @@
 {
   "name": "add-sourceurl",
-  "version": "0.0.3",
+  "version": "0.0.36",
   "description": "Help developers who face challenges when debugging dynamically loaded scripts using Chrome Dev Tools",
   "main": "app.js",
   "scripts": {
