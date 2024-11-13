@@ -11,13 +11,18 @@ const hasSourceURL = (fileContent, fileType) => {
 // Function to add sourceURL comment to the file
 const addSourceURL = (filePath, rootDir, fileType) => {
     const relativePath = path.relative(rootDir, filePath).replace(/\\/g, '/');
-    const sourceURLComment = `${getSourceURLPrefix(fileType)}${relativePath}${getSourceURLSuffix(fileType)}\n`;
+    let sourceURLComment = `${getSourceURLPrefix(fileType)}${relativePath}${getSourceURLSuffix(fileType)}\n`;
+
+    // Remove any ZWNBSP characters in case they exist in the comment string
+    sourceURLComment = sourceURLComment.replace(/\uFEFF/g, '');
 
     const fileContent = fs.readFileSync(filePath, 'utf8');
 
     if (!hasSourceURL(fileContent, fileType)) {
         const updatedContent = sourceURLComment + fileContent;
-        fs.writeFileSync(filePath, updatedContent, 'utf8');
+        // Filter out any ZWNBSP characters in the final content to be written
+        const cleanContent = updatedContent.replace(/\uFEFF/g, '');
+        fs.writeFileSync(filePath, cleanContent, 'utf8');
         console.log(`Added sourceURL to file: ${filePath}`);
     } else {
         console.log(`File already has a sourceURL: ${filePath}`);
